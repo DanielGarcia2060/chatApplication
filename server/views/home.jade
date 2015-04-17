@@ -1,0 +1,26 @@
+doctype
+html
+	head
+		title ChatApp
+		base(href="/chat")
+		link(rel="stylesheet",type="text/css",href="/public/global.css")
+	body(ng-app="chat_room",ng-strict-di)
+		header(ng-controller="headerController")
+			nav.app_nav
+				h1.ng-cloak {{SORRY_THERE_WAS_A_PROBLEM }}
+				ul
+					li: a(href="/chat") Home
+					li: a(href="/chat/account") Account
+					li(ng-if="!state()"): a(href="/chat/login") Login
+					li(ng-if="!state()"): a(href="/chat/register") Register
+					li(ng-if="state()"): a(href="/chat/public") Chat (public)
+				ul.right(ng-if="state()")
+					li: a(href="/chat",ng-click="unauth()") logout
+		div(ng-view)
+		//- Load scripts at the end
+		script(src="//localhost:35729/livereload.js")
+		script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js")
+		script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js")
+		script(src="/socket.io/socket.io.js")
+		script(src="/public/app.min.js")
+		script try{angular.module('ngRoute');}catch(e){document.getElementsByTagName('body')[0].innerHTML='<h1>Sorry we had a problem :\'(</h1><a href="/chat/">retry</a>'}

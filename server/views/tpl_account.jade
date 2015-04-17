@@ -1,0 +1,30 @@
+div
+	#account_window
+
+		h1 Hello #{username}
+		if username !== 'Guest'
+			#user_menu
+				ul
+					li: h3 My Friends
+					li(ng-repeat="friend in user.friends") - {{friend}}
+				hr
+				ul
+					li: h3 Find Friends
+					li: input(type="text",ng-model="friendName",placeholder="Write your frien'ds username")
+					li: input(type="button",ng-click="findFriend()",ng-disabled="friendName === ''",value="find")
+					li: a(ng-click="sendInvitation()") {{foundFriend}}
+				hr
+				ul(ng-if="user.requests.length")
+					li: h3 Pending requests
+					li(ng-repeat="req in user.requests") {{req}}
+						br
+						a(ng-click="accept(req)") accept |
+						a(ng-click="reject(req)") reject
+						br
+						br
+
+		else
+			#guest_menu
+				ul
+					li: a(href="/chat/login") Login
+					li: a(href="/chat/register") Create an account

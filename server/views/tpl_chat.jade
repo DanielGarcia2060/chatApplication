@@ -1,0 +1,25 @@
+div.chat-wrap.white
+	if username !== 'Guest'
+		ul
+			li(ng-repeat="room in rooms",ng-class="{active:isRoom(room)}"): a(href="{{room}}") {{room | prettyRoute}}
+		#chat_controls
+			.trigger-menu Friends
+				ul
+					li(ng-repeat="friend in friends"): a(ng-disabled='!isActive(friend) || isJoined(friend)',href="/chat/private/{{usersSubscribed+invite+friend}}") {{invite}}{{friend}}
+		div(chat-room-window)
+		form.chatform
+			div(ng-if="sendAs==='txt'")
+				textarea.msg_input(type="text",ng-model="message.txt")
+			div(ng-if="sendAs==='scb'")
+				canvas(write-scribble) Your browser don't support canvas
+			div
+				input.btn-send(type="submit",ng-click="send()",value="Send")
+				br
+				input(type="radio",ng-model="sendAs",value="txt")
+				| Text
+				br
+				input(type="radio",ng-model="sendAs",value="scb")
+				| Scribble
+
+	else 
+		p Please <a href="/chat/login"> login </a> to use chat App.

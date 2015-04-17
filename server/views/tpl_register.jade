@@ -1,0 +1,14 @@
+#register-view
+	h3 Register
+	p.error {{errorMsg}}
+	form
+		label(for="usernameField") Choose a username
+		input#usernameField(type="text" ng-model="user.username")
+		br
+		label(for="emailField") Type your email
+		input#emailField(type="email" ng-model="user.user_email")
+		br
+		label(for="passwordField") Choose your password
+		input#passwordField(type="password" ng-model="user.password")
+		br
+		input(type="submit",ng-click="register()")

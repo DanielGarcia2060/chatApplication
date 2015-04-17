@@ -1,0 +1,11 @@
+#login-view
+	h3 Login
+	h2.error {{errorMsg}}
+	form
+	label(for="usernameField") Your username
+	input#usernameField(type="text" ng-model="user.username")
+	br
+	label(for="passwordField") Your password
+	input#passwordField(type="password" ng-model="user.password")
+	br
+	input(type="submit",ng-click="login()")
